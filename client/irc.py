@@ -3,8 +3,8 @@ class IRC():
 # TODO Add connection loop
     class attributes():
         socket = so.socket()
-    def Connect(ip, port, ssl, nick):
-        if ssl:
+    def Connect(ip, port, ssl_enabled, nick):
+        if ssl_enabled == True:
             import ssl
             context = ssl.create_default_context()
             IRC.attributes.socket = context.wrap_socket(so.socket(so.AF_INET), server_hostname=ip)
