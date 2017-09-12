@@ -1,4 +1,4 @@
 #!/usr/bin/env python3
-import client.client
+from client import client
 
 client.init()
