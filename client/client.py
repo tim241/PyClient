@@ -2,17 +2,18 @@ from client.irc import IRC
 import configparser as ConfigParser
 import string, os, sys
 # TODO Add a config and read it from here
-ip = 'none'
-port = 0000
-ssl = 'none'
-nick = 'none'
+class Config():
+	ip = 'none'
+	port = 0000
+	ssl = 'none'
+	nick = 'none'
 def ReadConf():
 	config = ConfigParser.ConfigParser()
 	config.read("irc.conf")
-	ip = config.get('Server', 'ip')
-	port = config.getint('Server', 'port')
-	ssl = config.get('Server', 'ssl')
-	nick = config.get('User', 'nick')
+	Config.ip = config.get('Server', 'ip')
+	Config.port = config.getint('Server', 'port')
+	Config.ssl = config.get('Server', 'ssl')
+	Config.nick = config.get('User', 'nick')
 def GenExampleConf():
 	config = ConfigParser.RawConfigParser()
 	config.add_section('Server')
@@ -32,4 +33,4 @@ def init():
 		print("Config not found!")
 		GenExampleConf()
 		sys.exit(1)
-	IRC.Connect(ip, port, ssl, nick)
+	IRC.Connect(Config.ip, Config.port, Config.ssl, Config.nick)
